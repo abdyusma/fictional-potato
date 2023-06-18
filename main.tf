@@ -146,3 +146,11 @@ resource "aws_route53_record" "www" {
   ttl     = "300"
   records = [aws_lb.main.dns_name]
 }
+
+resource "aws_security_group_rule" "http" {
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 80
+  protocol          = "tcp"
+  security_group_id = data.aws_security_group.default.id
+}
