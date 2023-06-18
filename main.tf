@@ -43,7 +43,7 @@ data "aws_ami" "amazon_linux" {
 }
 
 data "template_file" "user_data" {
-  template = file("./scripts/setup-nginx.yaml")
+  template = file("./scripts/setup-nginx.sh")
 }
 
 resource "aws_instance" "web_1" {
