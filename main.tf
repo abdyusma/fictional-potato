@@ -101,7 +101,7 @@ resource "aws_lb_listener" "main" {
 }
 
 resource "aws_lb_listener_rule" "main" {
-  listener_arn = aws_lb_listener..arn
+  listener_arn = aws_lb_listener.main.arn
   priority     = 100
 
   action {
