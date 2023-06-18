@@ -43,7 +43,7 @@ resource "aws_instance" "web_1" {
   key_name = var.key_name
 
   tags = {
-    author = "rahman"
+    owner = var.owner
   }
 }
 
