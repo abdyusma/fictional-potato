@@ -37,7 +37,7 @@ data "aws_ami" "amazon_linux" {
   }
 
   filter {
-    name = "description"
+    name   = "description"
     values = ["Amazon Linux 2023 AMI*"]
   }
 }
