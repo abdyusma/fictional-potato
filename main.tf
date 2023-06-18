@@ -109,7 +109,7 @@ resource "aws_lb_target_group_attachment" "instance_2" {
 }
 
 data "aws_route53_zone" "main" {
-  name         = "rahmandemo.com."
+  name = "rahmandemo.com."
 }
 
 resource "aws_route53_record" "www" {
