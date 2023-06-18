@@ -20,7 +20,7 @@ data "aws_security_group" "default" {
 
 data "aws_ami" "amazon_linux" {
   filter {
-    name   = "ImageId"
+    name   = "image-id"
     values = ["ami-0b1217c6bff20e276"]
   }
 }
