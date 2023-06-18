@@ -31,6 +31,11 @@ data "aws_ami" "amazon_linux" {
     values = ["hvm"]
   }
 
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
   owners = ["amazon"]
 }
 
