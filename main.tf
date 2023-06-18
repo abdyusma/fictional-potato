@@ -34,11 +34,15 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+data "template_file" "user_data" {
+  template = file("./scripts/setup-nginx.yaml")
+}
+
 resource "aws_instance" "web_1" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
 
-  user_data = file("user_data.txt")
+  user_data = data.template_file.user_data.rendered
 
   key_name = var.key_name
 
@@ -51,7 +55,7 @@ resource "aws_instance" "web_2" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
 
-  user_data = file("user_data.txt")
+  user_data = data.template_file.user_data.rendered
 
   key_name = var.key_name
 
