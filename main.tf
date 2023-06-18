@@ -40,6 +40,8 @@ resource "aws_instance" "web_1" {
 
   user_data = file("user_data.txt")
 
+  key_name = var.key_name
+
   tags = {
     author = "rahman"
   }
