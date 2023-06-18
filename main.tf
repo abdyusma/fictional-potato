@@ -2,8 +2,12 @@ provider "aws" {
   region  = var.region
 }
 
-data "aws_subnet" "default" {
-  id = var.subnet_id
+data "aws_subnet" "default_1" {
+  id = var.subnet_id_1
+}
+
+data "aws_subnet" "default_2" {
+  id = var.subnet_id_2
 }
 
 data "aws_security_group" "default" {
@@ -15,7 +19,10 @@ resource "aws_lb" "main" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [data.aws_security_group.default.id]
-  subnets            = [data.aws_subnet.default.id]
+  subnets            = [
+    data.aws_subnet.default_1.id,
+    data.aws_subnet.default_2.id
+  ]
 
   tags = {
     Environment = "test"
