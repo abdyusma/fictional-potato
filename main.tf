@@ -139,6 +139,18 @@ data "aws_route53_zone" "main" {
   name = "rahmandemo.com."
 }
 
+resource "aws_route53_record" "main" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "rahmandemo.com"
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.main.name
+    zone_id                = aws_lb.main.zone_id
+    evaluate_target_health = true
+  }
+}
+
 resource "aws_route53_record" "www" {
   zone_id = data.aws_route53_zone.main.zone_id
   name    = "www.${data.aws_route53_zone.main.name}"
