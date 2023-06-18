@@ -18,12 +18,12 @@ data "aws_security_group" "default" {
   id = var.security_group_id
 }
 
-data "aws_ami" "ubuntu" {
+data "aws_ami" "amazon_linux" {
   most_recent = true
 
   filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    name   = "description"
+    values = ["Amazon Linux 2023 AMI 2023*"]
   }
 
   filter {
@@ -31,7 +31,7 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical
+  owners = ["amazon"]
 }
 
 data "template_file" "user_data" {
@@ -39,7 +39,7 @@ data "template_file" "user_data" {
 }
 
 resource "aws_instance" "web_1" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.amazon_linux.id
   instance_type = "t3.micro"
 
   user_data = data.template_file.user_data.rendered
@@ -52,7 +52,7 @@ resource "aws_instance" "web_1" {
 }
 
 resource "aws_instance" "web_2" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.amazon_linux.id
   instance_type = "t3.micro"
 
   user_data = data.template_file.user_data.rendered
