@@ -53,6 +53,8 @@ resource "aws_instance" "web_2" {
 
   user_data = file("user_data.txt")
 
+  key_name = var.key_name
+
   tags = {
     owner = var.owner
   }
