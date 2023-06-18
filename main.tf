@@ -1,5 +1,5 @@
 provider "aws" {
-  region  = var.region
+  region = var.region
 }
 
 data "aws_subnet" "default_1" {
@@ -57,7 +57,7 @@ resource "aws_lb" "main" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [data.aws_security_group.default.id]
-  subnets            = [
+  subnets = [
     data.aws_subnet.default_1.id,
     data.aws_subnet.default_2.id
   ]
