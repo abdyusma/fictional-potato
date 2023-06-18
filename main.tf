@@ -28,3 +28,21 @@ resource "aws_lb" "main" {
     Environment = "test"
   }
 }
+
+resource "aws_lb_target_group" "main" {
+  name     = var.prefix
+  port     = 80
+  protocol = "HTTP"
+}
+
+resource "aws_lb_target_group_attachment" "instance_1" {
+  target_group_arn = aws_lb_target_group.main.arn
+  target_id        = aws_instance.instance_1.id
+  port             = 80
+}
+
+resource "aws_lb_target_group_attachment" "instance_2" {
+  target_group_arn = aws_lb_target_group.main.arn
+  target_id        = aws_instance.instance_2.id
+  port             = 80
+}
