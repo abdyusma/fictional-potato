@@ -19,24 +19,10 @@ data "aws_security_group" "default" {
 }
 
 data "aws_ami" "amazon_linux" {
-  most_recent = true
-
   filter {
-    name   = "description"
-    values = ["Amazon Linux 2023 AMI 2023*"]
+    name   = "ImageId"
+    values = ["ami-0b1217c6bff20e276"]
   }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
-
-  owners = ["amazon"]
 }
 
 data "template_file" "user_data" {
