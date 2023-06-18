@@ -146,7 +146,7 @@ resource "aws_route53_record" "main" {
 
   alias {
     name                   = aws_lb.main.name
-    zone_id                = data.aws_route53_zone.main.zone_id
+    zone_id                = aws_lb.main.zone_id
     evaluate_target_health = true
   }
 }
