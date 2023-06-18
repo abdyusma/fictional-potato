@@ -34,8 +34,6 @@ resource "aws_instance" "web_1" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
 
-  associate_public_ip_address = false
-
   user_data = file("user_data.txt")
 
   tags = {
@@ -46,8 +44,6 @@ resource "aws_instance" "web_1" {
 resource "aws_instance" "web_2" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
-
-  associate_public_ip_address = false
 
   user_data = file("user_data.txt")
 
