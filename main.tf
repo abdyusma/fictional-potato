@@ -46,7 +46,7 @@ data "template_file" "user_data" {
 resource "aws_instance" "web_1" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = "t3.micro"
-  subnet_id     = data.aws_subnet.default_1
+  subnet_id     = data.aws_subnet.default_1.id
 
   user_data = data.template_file.user_data.rendered
 
@@ -60,7 +60,7 @@ resource "aws_instance" "web_1" {
 resource "aws_instance" "web_2" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = "t3.micro"
-  subnet_id     = data.aws_subnet.default_2
+  subnet_id     = data.aws_subnet.default_2.id
 
   user_data = data.template_file.user_data.rendered
 
