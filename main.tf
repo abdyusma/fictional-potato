@@ -107,3 +107,15 @@ resource "aws_lb_target_group_attachment" "instance_2" {
   target_id        = aws_instance.web_2.id
   port             = 80
 }
+
+data "aws_route53_zone" "main" {
+  name         = "rahmandemo.com."
+}
+
+resource "aws_route53_record" "www" {
+  zone_id = data.aws_route53_zone.main.zone_id
+  name    = "www.${data.aws_route53_zone.main.name}"
+  type    = "CNAME"
+  ttl     = "300"
+  records = [aws_lb.main.dns_name]
+}
