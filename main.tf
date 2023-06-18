@@ -2,6 +2,10 @@ provider "aws" {
   region = var.region
 }
 
+data "aws_vpc" "main" {
+  id = var.vpc_id
+}
+
 data "aws_subnet" "default_1" {
   id = var.subnet_id_1
 }
@@ -71,6 +75,7 @@ resource "aws_lb_target_group" "main" {
   name     = var.prefix
   port     = 80
   protocol = "HTTP"
+  vpc_id   = data.aws_vpc.main.id
 }
 
 resource "aws_lb_target_group_attachment" "instance_1" {
