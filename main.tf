@@ -36,6 +36,8 @@ resource "aws_instance" "web_1" {
 
   associate_public_ip_address = false
 
+  user_data = file("user_data.txt")
+
   tags = {
     author = "rahman"
   }
@@ -46,6 +48,8 @@ resource "aws_instance" "web_2" {
   instance_type = "t3.micro"
 
   associate_public_ip_address = false
+
+  user_data = file("user_data.txt")
 
   tags = {
     author = "rahman"
